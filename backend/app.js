@@ -1,0 +1,54 @@
+const express = require("express");
+const cors = require("cors");
+
+const session = require("express-session");
+const mongodbSession = require("connect-mongodb-session")(session);
+
+const { authRouter } = require("./auth/authrouter");
+const { default: mongoose } = require("mongoose");
+const { itemsRouter } = require("./routes/itemsRouter");
+
+const DBPath = "mongodb://localhost:27017/myntradb";
+
+const app = express();
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://192.168.1.2:5173"], // Your React app URL
+    credentials: true,
+  }),
+);
+
+const store = mongodbSession({
+  uri: DBPath,
+  collection: "sessions",
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: "my secret new key",
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+  }),
+);
+
+app.use(itemsRouter);
+app.use(authRouter);
+
+const PORT = 3001;
+
+mongoose
+  .connect(DBPath)
+  .then(() => {
+    console.log("Connected to MongoDB");
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log("Server Started on http://192.168.1.2:" + PORT);
+      console.log("Local access: http://localhost:" + PORT);
+    });
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB", err);
+  });
