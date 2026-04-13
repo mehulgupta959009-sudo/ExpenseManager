@@ -8,7 +8,7 @@ const { authRouter } = require("./auth/authrouter");
 const { default: mongoose } = require("mongoose");
 const { itemsRouter } = require("./routes/itemsRouter");
 
-const DBPath = "mongodb://localhost:27017/myntradb";
+const DBPath = "mongodb://localhost:27017/expense_manager_sessions";
 
 const app = express();
 app.use(

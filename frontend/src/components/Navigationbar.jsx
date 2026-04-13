@@ -9,7 +9,7 @@ function Navigationbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 shadow-xl z-50">
+    <nav className="fixed top-0 w-full bg-linear-to-r from-indigo-600 via-indigo-700 to-purple-700 shadow-xl z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-4">

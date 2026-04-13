@@ -83,7 +83,7 @@ html {
 }
 
 .stat-box {
-  @apply bg-gradient-to-br rounded-xl p-6 border-2;
+  @apply bg-linear-to-br rounded-xl p-6 border-2;
 }
 
 .category-badge {
@@ -92,7 +92,7 @@ html {
 
 /* Button utilities */
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95;
+  @apply px-6 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95;
 }
 
 .btn-secondary {
@@ -122,5 +122,5 @@ select:focus {
 
 /* Gradient text */
 .gradient-text {
-  @apply bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent;
+  @apply bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent;
 }

@@ -3,8 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./routes/App.jsx";
-import Expenses from "./routes/Expenses.jsx";
-import AddExpense from "./routes/AddExpense.jsx";
+import Transactions from "./routes/Transactions.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
 import { Provider } from "react-redux";
 import itemsStore from "./store/index.js";
@@ -16,8 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Expenses /> },
-      { path: "/addexpense", element: <AddExpense /> },
+      { path: "/", element: <Transactions /> },
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/signUp", element: <Signup /> },
       { path: "/signIn", element: <SignIn /> },

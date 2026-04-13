@@ -41,7 +41,7 @@ function ExpenseView({ expense }) {
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden w-72 h-96 m-4 flex flex-col border border-gray-100 hover:border-indigo-200">
       <div
-        className={`bg-gradient-to-r ${categoryColor} h-28 flex items-end justify-between pb-6 px-6`}
+        className={`bg-linear-to-r ${categoryColor} h-28 flex items-end justify-between pb-6 px-6`}
       >
         <div>
           <p className="text-white text-sm font-semibold opacity-90">
