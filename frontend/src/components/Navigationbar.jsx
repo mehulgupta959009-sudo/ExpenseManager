@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { uiStatusActions } from "../store/uiStatusSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Navigationbar() {
+  const logStatus = useSelector((state) => state.uiStatus);
+
   const dispatch = useDispatch();
   const handler = () => {
     dispatch(uiStatusActions.hideSideBar());
@@ -75,7 +77,7 @@ function Navigationbar() {
 
           <Link to="/signUp">
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95">
-              Sign Up
+              {logStatus ? "Profile" : "Sign Up"}
             </button>
           </Link>
         </div>

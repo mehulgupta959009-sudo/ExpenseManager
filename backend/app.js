@@ -38,12 +38,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
-    // cookie: {
-    //   secure: false,
-    //   httpOnly: false,
-    //   sameSite: "lax",
-    //   maxAge: 1000 * 60 * 60 * 24,
-    // },
+    cookie: {
+      secure: false,
+      httpOnly: false,
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 24,
+    },
   }),
 );
 
