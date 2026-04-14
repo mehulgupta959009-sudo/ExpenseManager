@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStatusActions } from "../store/fetchStatus";
 import { itemsActions } from "../store/itemsSlice";
-import { itemsToFetch } from "../services/managefetching";
+import { itemsToFetch, itemsToFetchFavs } from "../services/managefetching";
+import { favoritesActions } from "../store/favoritesSlice";
 
 function Fetchitems() {
   const dispatch = useDispatch();
@@ -10,6 +11,26 @@ function Fetchitems() {
   const fetchStatus = useSelector((state) => {
     return state.fetchStatus.status;
   });
+
+  const fetchFavStatus = useSelector((state) => {
+    return state.favorites.status;
+  });
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    dispatch(favoritesActions.markFetching());
+
+    itemsToFetchFavs(signal).then((data) => {
+      dispatch(favoritesActions.markFetchedDone());
+      dispatch(favoritesActions.fetchedFavItems(data));
+    });
+
+    return () => {
+      controller.abort();
+    };
+  }, [fetchFavStatus]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -25,7 +46,7 @@ function Fetchitems() {
     return () => {
       controller.abort();
     };
-  }, [fetchStatus, dispatch]);
+  }, [fetchStatus]);
 
   return <></>;
 }

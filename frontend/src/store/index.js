@@ -1,15 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import itemsSlice from "./itemsSlice";
 import fetchStatusSlice from "./fetchStatus";
+import favoritesSlice from "./favoritesSlice";
 import uiStatusSlice from "./uiStatusSlice";
-import filterSlice from "./filterSlice";
 
 const itemsStore = configureStore({
   reducer: {
     items: itemsSlice.reducer,
     fetchStatus: fetchStatusSlice.reducer,
+    favorites: favoritesSlice.reducer,
     uiStatus: uiStatusSlice.reducer,
-    filters: filterSlice.reducer,
   },
 });
 
