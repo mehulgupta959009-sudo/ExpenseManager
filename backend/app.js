@@ -8,8 +8,9 @@ const { authRouter } = require("./auth/authrouter");
 const { default: mongoose } = require("mongoose");
 const { itemsRouter } = require("./routes/itemsRouter");
 
+// const DBPath = "mongodb://localhost:27017/expense_manager_DB";
 const DBPath =
-  "mongodb+srv://expensemanager:root1234@cluster0.ndaxhwo.mongodb.net/?appName=Cluster0";
+  "mongodb+srv://expensemanager:root1234@cluster0.ndaxhwo.mongodb.net";
 
 const app = express();
 app.use(
@@ -32,6 +33,8 @@ const store = mongodbSession({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: "my secret new key",
@@ -40,13 +43,12 @@ app.use(
     store: store,
     cookie: {
       secure: false,
-      httpOnly: false,
+      httpOnly: true, // 🔥 important
       sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 24,
     },
   }),
 );
-
 app.use(itemsRouter);
 app.use(authRouter);
 

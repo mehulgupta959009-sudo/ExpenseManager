@@ -1,7 +1,9 @@
-const API_URL = "https://expense-manager-4re2.vercel.app"; // http://localhost:3001 , http://192.168.1.2:3001 , http://192.168.43.81:3001
+const API_URL = "https://expense-manager-4re2.vercel.app";
+// const API_URL = "http://192.168.1.2:3001";
+// http://localhost:3001 , http://192.168.1.2:3001 , http://192.168.43.81:3001
 
 export const itemsToFetch = (signal) => {
-  return fetch(`${API_URL}/items`, { signal })
+  return fetch(`${API_URL}/items`, { signal, credentials: "include" })
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -26,6 +28,7 @@ export const itemToAdd = async (e) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({
       expenseReason: e.target.expenseReason.value,
       price: e.target.price.value,
