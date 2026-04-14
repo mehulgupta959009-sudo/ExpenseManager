@@ -5,10 +5,10 @@ import { fetchStatusActions } from "../store/fetchStatus";
 function AddingItem() {
   const dispatch = useDispatch();
 
-  const addingitemHandler = (itemName) => {
-    itemToAdd(itemName).then((data) => {
+  const addingitemHandler = (e) => {
+    itemToAdd(e).then((data) => {
       console.log(data);
-      dispatch(data.refetch && fetchStatusActions.markStatusChanged());
+      dispatch(fetchStatusActions.markStatusChanged());
     });
   };
 
@@ -26,22 +26,66 @@ function AddingItem() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              addingitemHandler(e.target.productName.value);
-              e.target.productName.value = "";
+              addingitemHandler(e);
+              e.target.expenseReason.value = "";
+              e.target.price.value = "";
+              e.target.itemType.value = "";
             }}
             className="space-y-6"
           >
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Item Name
+                Expense Reason
               </label>
               <input
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-gray-900 placeholder-gray-500"
                 type="text"
-                name="productName"
-                placeholder="Enter item name..."
+                name="expenseReason"
+                placeholder="Enter expense reason..."
                 required
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Price
+              </label>
+              <input
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-gray-900 placeholder-gray-500"
+                type="text"
+                name="price"
+                placeholder="Enter price..."
+                required
+              />
+            </div>
+
+            <div className="flex items-center">
+              <input
+                type="radio"
+                id="expense"
+                name="itemType"
+                value="expense"
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+              />
+              <label
+                htmlFor="expense"
+                className="ml-2 block text-sm text-gray-700"
+              >
+                Expense
+              </label>
+              <input
+                type="radio"
+                id="earning"
+                name="itemType"
+                value="earning"
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+              />
+              <label
+                htmlFor="earning"
+                className="ml-2 block text-sm text-gray-700"
+              >
+                Earning
+              </label>
             </div>
 
             <button

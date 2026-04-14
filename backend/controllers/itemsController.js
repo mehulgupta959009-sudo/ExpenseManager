@@ -5,15 +5,9 @@ exports.getItems = (req, res, next) => {
   console.log(req.url, req.method);
   console.log("Request Reached Successfully /get");
 
-  addeditems
-    .find()
-    .then((items) => {
-      return res.json(items);
-    })
-    .catch((err) => {
-      console.error("Error fetching items:", err);
-      return res.status(500).json({ error: "Failed to fetch items" });
-    });
+  const items = addeditems.find().then((items) => {
+    return res.json(items);
+  });
 };
 
 exports.postItems = (req, res, next) => {
@@ -21,13 +15,17 @@ exports.postItems = (req, res, next) => {
   console.log("Request Reached Successfully /post");
 
   const newItem = new addeditems({
-    productName: req.body.productName,
+    expenseReason: req.body.expenseReason,
+    price: req.body.price,
+    itemType: req.body.itemType,
   });
   newItem
     .save()
     .then(() => {
       console.log("Saved user details:", {
-        productName: req.body.productName,
+        expenseReason: req.body.expenseReason,
+        price: req.body.price,
+        itemType: req.body.itemType,
       });
     })
     .catch((err) => {
@@ -44,7 +42,13 @@ exports.postItems = (req, res, next) => {
 // };
 
 exports.addToFavs = async (req, res, next) => {
-  console.log(req.url, req.method, req.body);
+  console.log(
+    req.url,
+    req.method,
+    req.body,
+    req.session.isLoggedIn,
+    req.session.userId,
+  );
 
   // Check if user is logged in
   if (req.session.isLoggedIn && req.session.userId) {

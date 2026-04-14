@@ -20,13 +20,17 @@ export const itemsToFetchFavs = (signal) => {
     });
 };
 
-export const itemToAdd = async (name) => {
+export const itemToAdd = async (e) => {
   const response = await fetch(`${API_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ productName: name }),
+    body: JSON.stringify({
+      expenseReason: e.target.expenseReason.value,
+      price: e.target.price.value,
+      itemType: e.target.itemType.value,
+    }),
   });
   console.log(response);
 

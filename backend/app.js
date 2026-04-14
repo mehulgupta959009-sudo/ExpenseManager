@@ -13,7 +13,11 @@ const DBPath = "mongodb://localhost:27017/expense_manager_DB";
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://192.168.43.81:5173"], // Your React app URL
+    origin: [
+      "http://localhost:5173",
+      "http://192.168.1.2:5173",
+      "http://192.168.43.81:5173",
+    ], // Your React app URL
     credentials: true,
   }),
 );
@@ -32,6 +36,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
+    // cookie: {
+    //   secure: false,
+    //   httpOnly: false,
+    //   sameSite: "lax",
+    //   maxAge: 1000 * 60 * 60 * 24,
+    // },
   }),
 );
 
@@ -44,7 +54,7 @@ mongoose
   .connect(DBPath)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(PORT, "0.0.0.0", () => {
+    app.listen(PORT, () => {
       console.log("Server Started on http://192.168.43.81:" + PORT);
       console.log("Local access: http://localhost:" + PORT);
     });
