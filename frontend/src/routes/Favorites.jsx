@@ -11,7 +11,7 @@ function Favorites() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl font-black text-gray-900 mb-2">
-            My Favorites
+            My Transactions
           </h1>
           <p className="text-gray-600 text-lg">
             You have {itemDetails.length} favorite

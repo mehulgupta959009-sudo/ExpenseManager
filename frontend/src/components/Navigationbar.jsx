@@ -43,7 +43,7 @@ function Navigationbar() {
                 <span className="text-white font-black text-lg">TP</span>
               </div>
               <span className="hidden sm:block text-xl font-black text-white group-hover:text-blue-400 transition-colors">
-                TimePass
+                Expense Manager
               </span>
             </a>
           </div>
