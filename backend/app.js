@@ -42,11 +42,17 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
-      secure: false,
-      httpOnly: true, // 🔥 important
-      sameSite: "lax",
+      secure: true, // 🔥 required for HTTPS
+      httpOnly: true,
+      sameSite: "none", // 🔥 required for cross-site
       maxAge: 1000 * 60 * 60 * 24,
     },
+    // cookie: {
+    //   secure: false,
+    //   httpOnly: true, // 🔥 important
+    //   sameSite: "lax",
+    //   maxAge: 1000 * 60 * 60 * 24,
+    // },
   }),
 );
 app.use(itemsRouter);
