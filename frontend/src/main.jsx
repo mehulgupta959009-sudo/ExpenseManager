@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./routes/App.jsx";
-import Items from "./routes/Items.jsx";
+import Welcome from "./routes/Welcome.jsx";
 import AddingItem from "./routes/AddingItem.jsx";
 import Favorites from "./routes/Favorites.jsx";
 import { Provider } from "react-redux";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Items /> },
+      { path: "/", element: <Welcome /> },
       { path: "/additem", element: <AddingItem /> },
       { path: "/favorites", element: <Favorites /> },
       { path: "/signUp", element: <Signup /> },

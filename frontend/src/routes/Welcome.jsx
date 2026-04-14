@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ItemView from "../components/ItemView";
 import { fetchStatusActions } from "../store/fetchStatus";
 
-function Items() {
+function Welcome() {
   const dispatch = useDispatch();
 
   const items = useSelector((state) => {
@@ -63,4 +63,4 @@ function Items() {
   );
 }
 
-export default Items;
+export default Welcome;

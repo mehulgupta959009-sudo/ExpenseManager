@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const uiStatusSlice = createSlice({
   name: "uiStatus",
-  initialState: { sideBar: true },
+  initialState: { sideBar: false },
   reducers: {
     hideSideBar: (state) => {
       state.sideBar = !state.sideBar;
