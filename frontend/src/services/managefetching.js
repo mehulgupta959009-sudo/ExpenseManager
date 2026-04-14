@@ -1,5 +1,4 @@
-const API_URL =
-  "https://vercel.com/mehulgupta959009-sudos-projects/expense-manager-4re2/5mmjd2FgQko39quVGJEYT1tUEYqt"; // http://localhost:3001 , http://192.168.1.2:3001 , http://192.168.43.81:3001
+const API_URL = "https://expense-manager-4re2.vercel.app"; // http://localhost:3001 , http://192.168.1.2:3001 , http://192.168.43.81:3001
 
 export const itemsToFetch = (signal) => {
   return fetch(`${API_URL}/items`, { signal })
