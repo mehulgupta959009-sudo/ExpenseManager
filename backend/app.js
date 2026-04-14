@@ -18,6 +18,7 @@ app.use(
       "http://localhost:5173",
       "http://192.168.1.2:5173",
       "http://192.168.43.81:5173",
+      "https://expense-manager-silk-five.vercel.app/",
     ], // Your React app URL
     credentials: true,
   }),
