@@ -8,7 +8,8 @@ const { authRouter } = require("./auth/authrouter");
 const { default: mongoose } = require("mongoose");
 const { itemsRouter } = require("./routes/itemsRouter");
 
-const DBPath = "mongodb://localhost:27017/expense_manager_DB";
+const DBPath =
+  "mongodb+srv://expensemanager:root1234@cluster0.ndaxhwo.mongodb.net/?appName=Cluster0";
 
 const app = express();
 app.use(
