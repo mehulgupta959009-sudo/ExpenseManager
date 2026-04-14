@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001";
+const API_URL = "http://192.168.1.2:3001"; // http://localhost:3001 , http://192.168.1.2:3001 , http://192.168.43.81:3001
 
 export const itemsToFetch = (signal) => {
   return fetch(`${API_URL}/items`, { signal })
