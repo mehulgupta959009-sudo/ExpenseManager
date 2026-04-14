@@ -10,7 +10,7 @@ export const itemsToFetch = (signal) => {
       return data;
     });
 };
-
+// coment?
 export const itemsToFetchFavs = (signal) => {
   return fetch(`${API_URL}/favItems`, {
     signal,
