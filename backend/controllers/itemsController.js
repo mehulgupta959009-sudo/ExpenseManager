@@ -5,9 +5,15 @@ exports.getItems = (req, res, next) => {
   console.log(req.url, req.method);
   console.log("Request Reached Successfully /get");
 
-  const items = addeditems.find().then((items) => {
-    return res.json(items);
-  });
+  addeditems
+    .find()
+    .then((items) => {
+      return res.json(items);
+    })
+    .catch((err) => {
+      console.error("Error fetching items:", err);
+      return res.status(500).json({ error: "Failed to fetch items" });
+    });
 };
 
 exports.postItems = (req, res, next) => {

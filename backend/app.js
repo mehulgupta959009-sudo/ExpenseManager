@@ -8,12 +8,12 @@ const { authRouter } = require("./auth/authrouter");
 const { default: mongoose } = require("mongoose");
 const { itemsRouter } = require("./routes/itemsRouter");
 
-const DBPath = "mongodb://localhost:27017/myntradb";
+const DBPath = "mongodb://localhost:27017/expense_manager_DB";
 
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://192.168.1.2:5173"], // Your React app URL
+    origin: ["http://localhost:5173", "http://192.168.43.81:5173"], // Your React app URL
     credentials: true,
   }),
 );
@@ -45,7 +45,7 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, "0.0.0.0", () => {
-      console.log("Server Started on http://192.168.1.2:" + PORT);
+      console.log("Server Started on http://192.168.43.81:" + PORT);
       console.log("Local access: http://localhost:" + PORT);
     });
   })
