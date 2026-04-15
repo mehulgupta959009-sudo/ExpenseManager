@@ -75,7 +75,12 @@ exports.getFavItems = async (req, res, next) => {
     const user = await authuser
       .findById(req.session.userId)
       .populate("favourites");
-    return res.json(user.favourites);
+
+    // here
+    const items = addeditems.find().then((items) => {
+      return res.json(items);
+    });
+    // return res.json(user.favourites);
   } else {
     return res.json({ status: "not logged in" });
   }
