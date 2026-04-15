@@ -30,7 +30,7 @@ function Fetchitems() {
     return () => {
       controller.abort();
     };
-  }, [fetchFavStatus]);
+  }, [fetchStatus]);
 
   useEffect(() => {
     const controller = new AbortController();
