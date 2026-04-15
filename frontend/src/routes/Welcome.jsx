@@ -182,7 +182,7 @@ function Welcome() {
           </div>
         </div>
 
-        {/* Items Display */}
+        {/* Items Display
         {items.length > 0 && (
           <div className="mb-16">
             <div className="flex items-center justify-between mb-8">
@@ -212,9 +212,9 @@ function Welcome() {
               ))}
             </div>
           </div>
-        )}
+        )} */}
 
-        {/* Empty State */}
+        {/* Empty State
         {items.length === 0 && (
           <div className="bg-white rounded-2xl border-2 border-dashed border-slate-300 p-16 text-center">
             <div className="inline-block bg-slate-100 rounded-full p-4 mb-6">
@@ -245,7 +245,7 @@ function Welcome() {
               </button>
             </Link>
           </div>
-        )}
+        )} */}
 
         {/* Footer CTA */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-12 text-center text-white mt-16">
