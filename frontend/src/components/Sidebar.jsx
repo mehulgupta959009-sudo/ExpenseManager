@@ -102,7 +102,7 @@ function Sidebar() {
                     />
                   </svg>
                 </span>
-                <span>Favorites</span>
+                <span>Transactions</span>
               </li>
             </Link>
 

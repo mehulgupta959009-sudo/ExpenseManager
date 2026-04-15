@@ -188,23 +188,25 @@ function Welcome() {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-3xl font-black text-slate-900">
-                  {items.length > 0 ? "Recent Items" : "No Items Available"}
+                  {items.length > 0
+                    ? "Recent Transactions"
+                    : "No Transactions Available"}
                 </h2>
                 <p className="text-slate-600 mt-2">
                   {items.length > 0
-                    ? `You have ${items.length} item${items.length !== 1 ? "s" : ""} in your collection`
-                    : "Start adding items to get started"}
+                    ? `You have ${items.length} transaction${items.length !== 1 ? "s" : ""} in your collection`
+                    : "Start adding transactions to get started"}
                 </p>
               </div>
               <button
                 onClick={reloadItems}
                 className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition"
               >
-                Reload Items
+                Reload Transactions
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6">
               {items.slice(0, 6).map((item) => (
                 <ItemView key={item._id} item={item} />
               ))}
@@ -231,15 +233,15 @@ function Welcome() {
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-slate-900 mb-2">
-              No items yet
+              No Transactions yet
             </h2>
             <p className="text-slate-600 max-w-sm mx-auto mb-6">
-              Create your first item by clicking the "Add Item" button in the
-              sidebar
+              Create your first transaction by clicking the "Add Transaction"
+              button in the sidebar
             </p>
             <Link to="/additem">
               <button className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition inline-block">
-                Add Your First Item
+                Add Your First Transaction
               </button>
             </Link>
           </div>

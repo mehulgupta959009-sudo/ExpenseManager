@@ -77,7 +77,7 @@ function Navigationbar() {
 
           <Link to="/signUp">
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95">
-              {logStatus ? "Profile" : "Sign Up"}
+              {logStatus.login ? "Profile" : "Sign Up"}
             </button>
           </Link>
         </div>

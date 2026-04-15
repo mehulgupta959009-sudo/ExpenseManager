@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { itemToAdd } from "../services/managefetching";
 import { fetchStatusActions } from "../store/fetchStatus";
+import { Link } from "react-router-dom";
 
 function AddingItem() {
   const dispatch = useDispatch();
@@ -11,17 +12,60 @@ function AddingItem() {
       dispatch(fetchStatusActions.markStatusChanged());
     });
   };
+  const logStatus = useSelector((state) => {
+    return state.uiStatus;
+  });
+
+  if (logStatus.login === false) {
+    return (
+      <div className="w-full mt-20 pb-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
+        <div className="max-w-md w-full px-4">
+          <div className="text-center">
+            <div className="mb-6 flex justify-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h1 className="text-3xl font-black text-slate-900 mb-3">
+              Sign in Required
+            </h1>
+            <p className="text-slate-600 mb-8 text-lg">
+              Please log in to add new transactions to your account.
+            </p>
+            <Link
+              to="/signup"
+              className="inline-block w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+            >
+              Go to Sign In
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full mt-20 pb-10 flex items-center justify-center min-h-[calc(100vh-5rem)]">
-      <div className="max-w-md w-full">
-        <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
-          <h1 className="text-3xl font-black text-gray-900 mb-2">
-            Add New Item
-          </h1>
-          <p className="text-gray-600 mb-8">
-            Create a new item in your collection
-          </p>
+      <div className="max-w-md w-full px-4">
+        <div className="bg-white rounded-2xl shadow-xl p-10 border border-slate-200 backdrop-blur-sm">
+          <div className="mb-8">
+            <h1 className="text-3xl font-black text-slate-900 mb-2">
+              Add Transaction
+            </h1>
+            <p className="text-slate-600">Track your expense or income</p>
+          </div>
 
           <form
             onSubmit={(e) => {
@@ -34,62 +78,71 @@ function AddingItem() {
             className="space-y-6"
           >
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Expense Reason
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
+                Description
               </label>
               <input
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-gray-900 placeholder-gray-500"
+                className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 placeholder-slate-400 bg-slate-50"
                 type="text"
                 name="expenseReason"
-                placeholder="Enter expense reason..."
+                placeholder="e.g., Grocery shopping"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Price
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
+                Amount
               </label>
-              <input
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-gray-900 placeholder-gray-500"
-                type="text"
-                name="price"
-                placeholder="Enter price..."
-                required
-              />
+              <div className="relative">
+                <span className="absolute left-4 top-3 text-slate-500 font-semibold">
+                  $
+                </span>
+                <input
+                  className="w-full pl-8 pr-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 transition-all text-slate-900 placeholder-slate-400 bg-slate-50"
+                  type="number"
+                  name="price"
+                  placeholder="0.00"
+                  step="0.01"
+                  required
+                />
+              </div>
             </div>
 
-            <div className="flex items-center">
-              <input
-                type="radio"
-                id="expense"
-                name="itemType"
-                value="expense"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-              />
-              <label
-                htmlFor="expense"
-                className="ml-2 block text-sm text-gray-700"
-              >
-                Expense
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
+                Type
               </label>
-              <input
-                type="radio"
-                id="earning"
-                name="itemType"
-                value="earning"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
-              />
-              <label
-                htmlFor="earning"
-                className="ml-2 block text-sm text-gray-700"
-              >
-                Earning
-              </label>
+              <div className="flex gap-4">
+                <label className="flex items-center cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="itemType"
+                    value="expense"
+                    className="h-5 w-5 text-red-500 cursor-pointer"
+                    required
+                  />
+                  <span className="ml-3 text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                    Expense
+                  </span>
+                </label>
+                <label className="flex items-center cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="itemType"
+                    value="earning"
+                    className="h-5 w-5 text-emerald-500 cursor-pointer"
+                    required
+                  />
+                  <span className="ml-3 text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                    Income
+                  </span>
+                </label>
+              </div>
             </div>
 
             <button
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center space-x-2"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-3 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center gap-2 mt-8"
               type="submit"
             >
               <svg
@@ -105,14 +158,13 @@ function AddingItem() {
                   d="M12 4v16m8-8H4"
                 />
               </svg>
-              <span>Add Item</span>
+              <span>Add Transaction</span>
             </button>
           </form>
 
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-sm text-blue-700">
-              💡 Tip: Give your item a descriptive name so you can easily find
-              it later.
+          <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-xl">
+            <p className="text-sm text-blue-800 font-medium">
+              ✓ Transactions are saved to your account instantly
             </p>
           </div>
         </div>

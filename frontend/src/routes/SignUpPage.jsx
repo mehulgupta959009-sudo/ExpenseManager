@@ -1,8 +1,18 @@
+import { Link } from "react-router-dom";
 import { postLogin } from "../services/managefetching";
+import { useDispatch } from "react-redux";
+import { uiStatusActions } from "../store/uiStatusSlice";
 
 function Signup() {
+  const dispatch = useDispatch();
+
   const loginHandler = (email, password) => {
-    postLogin(email, password);
+    postLogin(email, password).then((res) => {
+      console.log(res);
+      if (res.validation === "success") {
+        dispatch(uiStatusActions.Loggedin());
+      }
+    });
   };
 
   return (
@@ -57,13 +67,13 @@ function Signup() {
 
           <div className="mt-6 pt-6 border-t border-gray-200">
             <p className="text-center text-gray-600 text-sm">
-              Already have an account?{" "}
-              <a
-                href="/signIn"
+              Don't have an account?{" "}
+              <Link
+                to="/signin"
                 className="text-blue-600 font-semibold hover:text-blue-700"
               >
                 Sign In here
-              </a>
+              </Link>
             </p>
           </div>
         </div>

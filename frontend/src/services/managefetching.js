@@ -52,9 +52,7 @@ export const postLogin = async (email, password) => {
       password: password,
     }),
   });
-  return response.json().then((res) => {
-    console.log(res);
-  });
+  return response.json();
 };
 
 export const postSignIn = async (fname, lname, email, password) => {
